@@ -1,0 +1,636 @@
+{
+  "info": {
+    "_postman_id": "c8d2e9c0-9bb6-46b3-8364-d3ae6bc58c6d",
+    "name": "CollabDocs API",
+    "description": "Postman collection for CollabDocs backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54316827",
+    "_collection_link": "https://go.postman.co/collection/54316827-c8d2e9c0-9bb6-46b3-8364-d3ae6bc58c6d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"Ankit.Surana@example.com\", \n\"password\": \"password123\", \n\"first_name\": \"Ankit\", \n\"last_name\": \"Surana\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/register/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "register",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login (Token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"ankit.surana@example.com\", \"password\": \"password123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/token/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "token",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/profile/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "profile",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Workspaces",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/5cfb5cd2-0479-4d79-8e58-52e2738ff82e/workspaces/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "5cfb5cd2-0479-4d79-8e58-52e2738ff82e",
+                "workspaces",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Workspaces",
+      "item": [
+        {
+          "name": "List Workspaces",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/workspaces/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "workspaces",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Workspace",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"New Project\", \"description\": \"A new exciting project workspace.\",\"simulate_failure\": true}"
+            },
+            "url": {
+              "raw": "{{base_url}}/workspaces/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "workspaces",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Member to Workspace",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"user\": \"4901f91e-9678-4ab7-8fc8-fc26ef529684\", \"role\": \"editor\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/workspaces/5b845e1f-ed2d-4e82-b312-e173c76836af/members/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "workspaces",
+                "5b845e1f-ed2d-4e82-b312-e173c76836af",
+                "members",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Workspace Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/workspaces/5b845e1f-ed2d-4e82-b312-e173c76836af/stats/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "workspaces",
+                "5b845e1f-ed2d-4e82-b312-e173c76836af",
+                "stats",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Create Document",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"Initial Design\", \"content\": \"This is the content of the design doc.\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/workspaces/5b845e1f-ed2d-4e82-b312-e173c76836af/documents/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "workspaces",
+                "5b845e1f-ed2d-4e82-b312-e173c76836af",
+                "documents",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Documents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/workspaces/5b845e1f-ed2d-4e82-b312-e173c76836af/documents/?search=design",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "workspaces",
+                "5b845e1f-ed2d-4e82-b312-e173c76836af",
+                "documents",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "design"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Document",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/documents/529ae4b5-fb7f-43c2-b6c0-76826a91da57/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "documents",
+                "529ae4b5-fb7f-43c2-b6c0-76826a91da57",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Document",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"Updated Design\", \"content\": \"Updated content.\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/documents/529ae4b5-fb7f-43c2-b6c0-76826a91da57/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "documents",
+                "529ae4b5-fb7f-43c2-b6c0-76826a91da57",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Document Versions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/documents/529ae4b5-fb7f-43c2-b6c0-76826a91da57/versions/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "documents",
+                "529ae4b5-fb7f-43c2-b6c0-76826a91da57",
+                "versions",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/documents/529ae4b5-fb7f-43c2-b6c0-76826a91da57/summary/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "documents",
+                "529ae4b5-fb7f-43c2-b6c0-76826a91da57",
+                "summary",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"content\": \"Looks great!\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/documents/529ae4b5-fb7f-43c2-b6c0-76826a91da57/comments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "documents",
+                "529ae4b5-fb7f-43c2-b6c0-76826a91da57",
+                "comments",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Comments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/documents/529ae4b5-fb7f-43c2-b6c0-76826a91da57/comments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "documents",
+                "529ae4b5-fb7f-43c2-b6c0-76826a91da57",
+                "comments",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tags",
+      "item": [
+        {
+          "name": "List Tags",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/tags/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tags",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Tag",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Urgent\", \"color_code\": \"#ff0000\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/tags/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tags",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Tags to Document",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tag_ids\": [\"b40d0b65-1e40-4c92-949d-e8ecd16dc214\"]}"
+            },
+            "url": {
+              "raw": "{{base_url}}/documents/529ae4b5-fb7f-43c2-b6c0-76826a91da57/tags/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "documents",
+                "529ae4b5-fb7f-43c2-b6c0-76826a91da57",
+                "tags",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Audit Logs",
+      "item": [
+        {
+          "name": "List Audit Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/audit-logs/?model_name=Document",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "audit-logs",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "model_name",
+                  "value": "Document"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8001/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
